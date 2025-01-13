@@ -1,0 +1,20 @@
+{
+  "name": "pdrs-lv-4-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js localhost 8080",
+    "mocha": "./node_modules/.bin/mocha || true",
+    "istambul": "./node_modules/.bin/nyc ./node_modules/.bin/mocha -x ./**/*.test.js || true"
+  },
+  "dependencies": {
+    "nyc": "14.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nodemon": "1.18.4"
+  },
+  "keywords": []
+}
