@@ -20,7 +20,7 @@ pogrešku.
 */
 
 class AirFryer {
-    constructor(capacity, powerStatus) {
+    constructor(maxCapacity, powerStatus) {
         this.maxCapacity = typeof maxCapacity === "number" ? maxCapacity : 2;
         this.currentCapacity = this.maxCapacity;
         this.powerStatus = typeof powerStatus === "boolean" ? powerStatus : false;
@@ -48,7 +48,8 @@ class AirFryer {
     }
 
     setTemperature(degreesCelsius) {
-        if (typeof degreesCelsius === "number" && degreesCelsius >= 100 && degreesCelsius <= 250) {
+        if (typeof degreesCelsius === "number" && degreesCelsius >= 100 && degreesCelsius <= 250 
+            && this.powerStatus === true) {
             this.temperature = degreesCelsius;
             return 200;
         }
@@ -56,11 +57,12 @@ class AirFryer {
     }
 
     startCooking() {
-        if (this.powerStatus === true && this.isCooking === false && temperature >= 100) {
+        if (this.powerStatus === true && this.isCooking === false && this.temperature >= 100
+            && this.temperature <= 250) {
             if (this.basket.length === 0) {
                 return 404;
             }
-            isCooking = true;
+            this.isCooking = true;
             return 200;
         }
         return 400;
@@ -78,7 +80,7 @@ class AirFryer {
 
     add(food, volume) {
         if (food === "steak" || food === "pommes frites" || food === "chicken nuggets" || food === "pizza") {
-            if (this.currentCapacity - volume >= 0) {
+            if (volume > 0 && this.currentCapacity - volume >= 0) {
                 this.basket.push(food);
                 this.currentCapacity -= volume;
                 return 200;
