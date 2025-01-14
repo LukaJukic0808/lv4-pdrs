@@ -167,6 +167,13 @@ describe("AirFryer test", function () {
         it("Add too much food test", function () {
             assert.equal(testApp.add("steak", 6), 400);
         });
+        it("Add food into airFryer which is currently cooking test", function () {
+            testApp.isCooking = true;
+            assert.equal(testApp.add("steak", 1), 400);
+            testApp.basket = [];
+            testApp.currentCapacity = 5;
+            testApp.isCooking = false;
+        });
         it("Add valid food with valid volumes test", function () {
             assert.equal(testApp.add("steak", 2), 200);
             assert.equal(testApp.add("pommes frites", 1), 200);

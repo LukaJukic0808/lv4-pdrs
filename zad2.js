@@ -80,7 +80,7 @@ class AirFryer {
 
     add(food, volume) {
         if (food === "steak" || food === "pommes frites" || food === "chicken nuggets" || food === "pizza") {
-            if (volume > 0 && this.currentCapacity - volume >= 0) {
+            if (volume > 0 && this.currentCapacity - volume >= 0 && this.isCooking === false) {
                 this.basket.push(food);
                 this.currentCapacity -= volume;
                 return 200;
